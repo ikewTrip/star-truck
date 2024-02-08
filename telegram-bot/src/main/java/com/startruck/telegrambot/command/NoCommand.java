@@ -14,8 +14,9 @@ public class NoCommand implements Command {
 
     private final BotSendMessageService botSendMessageService;
 
-    public static final String NO_MESSAGE = "Я поддерживаю команды, начинающиеся со слеша(/).\n"
-            + "Чтобы посмотреть список команд введите /help";
+    public static final String NO_MESSAGE = """
+            Supported commands begin with a slash (/). Type /help or use menu to see the list of supported commands.
+            """;
 
     @Override
     public void execute(Update update) {

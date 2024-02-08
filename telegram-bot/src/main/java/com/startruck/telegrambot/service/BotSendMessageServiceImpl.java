@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jvnet.hk2.annotations.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.List;
@@ -18,6 +20,7 @@ import static org.springframework.util.CollectionUtils.isEmpty;
 public class BotSendMessageServiceImpl implements BotSendMessageService {
 
     private final StarTruckBot starTruckBot;
+
 
     @Override
     public void sendMessage(Long chatId, String message) {
@@ -39,5 +42,22 @@ public class BotSendMessageServiceImpl implements BotSendMessageService {
         if (isEmpty(messages)) return;
 
         messages.forEach(m -> sendMessage(chatId, m));
+    }
+
+    @Override
+    public void sendMessage(Long chatId, String message, InlineKeyboardMarkup menu) {
+        if (isBlank(message)) return;
+
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(chatId.toString());
+        sendMessage.enableHtml(true);
+        sendMessage.setText(message);
+        sendMessage.setReplyMarkup(menu);
+
+        try {
+            starTruckBot.execute(sendMessage);
+        } catch (TelegramApiException e) {
+            log.error("Error while sending a message with a menu to chatId: " + chatId, e);
+        }
     }
 }

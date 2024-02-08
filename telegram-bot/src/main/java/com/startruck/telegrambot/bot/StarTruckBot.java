@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.util.List;
+
 import static com.startruck.telegrambot.command.CommandName.NO;
 
 @Component
@@ -34,6 +36,13 @@ public class StarTruckBot extends TelegramLongPollingBot {
                 commandContainer.findCommand(commandIdentifier).execute(update);
             } else {
                 commandContainer.findCommand(NO.getCommandName()).execute(update);
+            }
+        } else if (update.hasCallbackQuery()) {
+            //commandContainer.findCommand(update.getCallbackQuery().getData()).execute(update);
+            System.out.println("CallbackQuery: " + update.getCallbackQuery().getData());
+            List<Integer> arr = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+            if (arr.contains(Integer.parseInt(update.getCallbackQuery().getData()))) {
+                commandContainer.findCommand("/updated_logbook").execute(update);
             }
         }
     }

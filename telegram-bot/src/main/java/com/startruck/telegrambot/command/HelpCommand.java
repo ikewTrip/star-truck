@@ -15,15 +15,15 @@ public class HelpCommand implements Command {
 
     private final BotSendMessageService botSendMessageService;
 
-    public static final String HELP_MESSAGE = String.format("""
-            ✨<b>Available commands</b>✨
+    public static final String HELP_MESSAGE = """
+            <b>Available commands</b>
 
-            <b>Start\\Stop Bot</b>
-            %s - start using
-            %s - stop using
-
-            %s - help section
-            """, START.getCommandName(), STOP.getCommandName(), HELP.getCommandName());
+            You can use the following commands:
+            /update_logbook - update your logbook
+            /dot - notify about DOT inspection
+            /subscription - subscription details
+            /manual - see the manual
+            """;
 
     @Override
     public void execute(Update update) {

@@ -20,7 +20,13 @@ public class CommandContainer {
                 Map.entry(START.getCommandName(), new StartCommand(botSendMessageService)),
                 Map.entry(STOP.getCommandName(), new StopCommand(botSendMessageService)),
                 Map.entry(HELP.getCommandName(), new HelpCommand(botSendMessageService)),
-                Map.entry(NO.getCommandName(), new NoCommand(botSendMessageService)));
+                Map.entry(NO.getCommandName(), new NoCommand(botSendMessageService)),
+                Map.entry(UPDATE_LOGBOOK.getCommandName(), new UpdateLogbookCommand(botSendMessageService)),
+                Map.entry(DOT.getCommandName(), new DotCommand(botSendMessageService)),
+                Map.entry(SUBSCRIPTION.getCommandName(), new SubscriptionDetailsCommand(botSendMessageService)),
+                Map.entry(MANUAL.getCommandName(), new ManualCommand(botSendMessageService)),
+                Map.entry(UPDATED_LOGBOOK.getCommandName(), new UpdatedLogbookCommand(botSendMessageService))
+        );
 
         unknownCommand = new UnknownCommand(botSendMessageService);
     }

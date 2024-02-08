@@ -7,19 +7,22 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import static com.startruck.telegrambot.command.CommandUtils.getChatId;
 
 /**
- * Unknown {@link Command}.
+ * DOT {@link Command}.
  */
 @AllArgsConstructor
-public class UnknownCommand implements Command {
-
-    public static final String UNKNOWN_MESSAGE =
-            "Sorry, this is not supported \uD83D\uDE1F, type /help or use menu to see the list of supported commands.";
+public class DotCommand implements Command {
 
     private final BotSendMessageService botSendMessageService;
+
+    private final static String DOT_MESSAGE = """
+            The owner of the truck <b>has been notified</b> that a DOT inspection <b>has stopped you</b>.
+
+            <b>Good luck!</b>
+            """;
 
     @Override
     public void execute(Update update) {
         Long chatId = getChatId(update);
-        botSendMessageService.sendMessage(chatId, UNKNOWN_MESSAGE);
+        botSendMessageService.sendMessage(chatId, DOT_MESSAGE);
     }
 }

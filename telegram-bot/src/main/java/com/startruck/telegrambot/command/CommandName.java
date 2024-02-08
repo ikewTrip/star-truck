@@ -13,7 +13,13 @@ public enum CommandName {
     START("/start"),
     STOP("/stop"),
     HELP("/help"),
-    NO("/no");
+    NO("/no"),
+
+    UPDATE_LOGBOOK("/update_logbook"),
+    DOT("/dot"),
+    SUBSCRIPTION("/subscription"),
+    MANUAL("/manual"),
+    UPDATED_LOGBOOK("/updated_logbook");
 
     private final String commandName;
 
